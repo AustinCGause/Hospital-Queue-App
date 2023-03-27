@@ -1,4 +1,4 @@
-package hospitalQueue;
+package hospitalQueue.mainPackage;
 import java.util.Scanner;
 
 public class Main {
