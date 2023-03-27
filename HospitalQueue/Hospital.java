@@ -1,4 +1,4 @@
-package HospitalQueue;
+package hospitalQueue;
 import java.util.*;
 
 public class Hospital {
