@@ -1,4 +1,4 @@
-package hospitalQueue.mainPackage;
+package mainpackage;
 
 public class Room {
 
