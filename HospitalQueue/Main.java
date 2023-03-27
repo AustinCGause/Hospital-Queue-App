@@ -88,6 +88,7 @@ public class Main {
                         break masterWhile;
                 }
             }
+        System.out.println("\nThank you for using the SGMC Patient Queueing System! :)");
         // Closes the scanner to prevent data leaks
         input.close();
     }
