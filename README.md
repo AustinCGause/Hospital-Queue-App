@@ -3,9 +3,9 @@
 For a recent hackathon I participated in, I was on a team that developed a patient queueing system for a hospital. At the time I knew absolutely no java, so I decided to try and see if I now have the skills to be able to make the application. So thats exactly what this application is.
 
 This application has the following uses as of now:
-  1. You can register new patients
-  2. You can view a patients information
-  3. You can move a patient around in the queue
+  * You can register new patients
+  * You can view a patients information
+  * You can move a patient around in the queue
   
 Uses that I am working on:
   * Being able to search up patients and view their information
