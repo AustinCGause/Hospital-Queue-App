@@ -1,0 +1,9 @@
+TODO:
+
+    > Make a method for checking if the paitents information during registration matches any stored patients info
+
+    > Make a method for viewing a patient information as well as being able to search up a patient
+
+    > Add functionality to the room class
+
+    > Add functionality to the hospital class

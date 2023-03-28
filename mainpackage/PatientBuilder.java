@@ -1,5 +1,5 @@
-package hospitalQueue;
-import hospitalQueue.Patient.PatientState;
+package mainpackage;
+import mainpackage.Patient.PatientState;
 
 public class PatientBuilder {
 
