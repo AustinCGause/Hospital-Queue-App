@@ -20,10 +20,6 @@ public class Patient {
 
     public static List<Integer> listIdNumbers = new ArrayList<Integer>();
 
-    public static void printPatientIdNumbers() {
-        System.out.println(Arrays.toString(listIdNumbers.toArray()));
-    }
-
     public Patient(String patientName, int patientAge, int patientId, boolean hasInsurance, PatientState patientStage) {
         this.patientName = patientName;
         this.patientAge = patientAge;
@@ -32,12 +28,8 @@ public class Patient {
         this.patientStage = patientStage;
     }
 
-    public void printPatientInformation() {
-        System.out.println("Patients name: " + this.patientName);
-        System.out.println("Patients age: " + this.patientAge);
-        System.out.println("Patients Id Number: " + this.patientId);
-        System.out.println("Patient has insurance: " + this.hasInsurance);
-        System.out.println("Patients current status: " + this.patientStage);
+    public static void printPatientIdNumbers() {
+        System.out.println(Arrays.toString(listIdNumbers.toArray()));
     }
 
     public static void patientStageSelectionPrompt() {
@@ -48,6 +40,24 @@ public class Patient {
         System.out.println("4) Seen by doctor");
         System.out.println("5) Checking out");
         System.out.print("6) Away (Checked Out)\n\n> ");
+    }
+
+    public static Patient searchForPatient(Scanner input) {
+        System.out.print("\nPlease enter patient's Id #: ");
+        int userInput = Integer.parseInt(input.nextLine());
+
+        Main.seperator();
+        Hospital.mapAllPatients.get(userInput).printPatientInformation();
+
+        return Hospital.mapAllPatients.get(userInput);
+    }
+
+    public void printPatientInformation() {
+        System.out.println("Patients name: " + this.patientName);
+        System.out.println("Patients age: " + this.patientAge);
+        System.out.println("Patients Id Number: " + this.patientId);
+        System.out.println("Patient has insurance: " + this.hasInsurance);
+        System.out.println("Patients current status: " + this.patientStage);
     }
 
     public void setPatientStage(int userSelection) {
@@ -72,6 +82,40 @@ public class Patient {
                 break;
             default:
                 System.out.println("\n!!!!!Please enter a valid option!!!!!");
+        }
+    }
+
+    public void updatePatientInformation(Scanner input, Patient newPatient) {
+        int userSelection;
+
+        nestedWhile : {
+            while (true) {
+                Main.seperator();
+
+                System.out.println("What information would you like to change?");
+                System.out.println("1) Patient Name (current name: " + newPatient.patientName + ")");
+                System.out.println("2) Patient Age (current age: " + newPatient.patientAge);
+                System.out.println("3) Patient Insurance Status (current status: " + newPatient.hasInsurance + ")");
+                System.out.print("4) Exit patient information editor\n\n> ");
+
+                userSelection = Integer.parseInt(input.nextLine());
+                switch (userSelection) {
+                    case 1:
+                        break;
+
+                    case 2:
+                        break;
+
+                    case 3:
+                        break;
+
+                    case 4:
+                        break nestedWhile;
+
+                    default:
+                        System.out.println("\n!!!!!Please enter a valid option!!!!!");
+                }
+            }
         }
     }
 }
