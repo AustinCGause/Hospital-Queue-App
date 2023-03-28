@@ -3,13 +3,18 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static void seperator() {
+        System.out.println("\n------------------------------\n");
+    }
+
     public static void loginMessage() {
-        System.out.println("\n~~~SGMC Hospital Patient Queue System v0.2~~~");
+        System.out.println("\n~~~SGMC Hospital Patient Queue System v0.3~~~");
         System.out.println("          ~~Welcome back Austin~~");
     }
 
     public static void mainMenuSelectionMessages() {
-        System.out.println("\nWhat would you like to do?");
+        seperator();
+        System.out.println("What would you like to do?");
         System.out.println("1) Register a new patient");
         System.out.println("2) View a current patients information");
         System.out.print("3) Log out\n\n> ");
@@ -40,6 +45,7 @@ public class Main {
         // If the user decides it needs to be updated, they go into a loop that waits until they input a valid selection
         System.out.print("\nAssign patient to waiting room? (1 for y, 2 for n): ");
         userSelection = Integer.parseInt(input.nextLine());
+
         if (userSelection == 2){
             do {
                 Patient.patientStageSelectionPrompt();
@@ -48,24 +54,17 @@ public class Main {
             } while (userSelection < 1 || userSelection > 6);
         }
 
-        // FIXME: Refactor this in some way to reduce nesting, I.E. method or otherwise
-        // Script to confirm patient information is accurate
-        System.out.println("\nIs the below information accurate?\n");
+        seperator();
+
+        System.out.println("Is the below information accurate?\n");
         newPatient.printPatientInformation();
         System.out.print("\n1 for y, 2 for n: ");
+
         userSelection = Integer.parseInt(input.nextLine());
         if (userSelection == 2) {
-            while (true) {
-                System.out.println("\nWhat information is incorrect?");
-                System.out.println("1) Patient Name (current name: " + newPatient.patientName + ")");
-                System.out.println("2) Patient Age (current age: " + newPatient.patientAge);
-                System.out.print("3) Patient Insurance Status (current status: " + newPatient.hasInsurance + ")\n\n> ");
-                userSelection = Integer.parseInt(input.nextLine());
-                switch (userSelection) {
-                    // FIXME: add options for changing specific user info
-                }
-            }
+            newPatient.updatePatientInformation(input, newPatient);
         }
+
     }
 
     public static void main(String[] args) {
@@ -84,22 +83,34 @@ public class Main {
 
                 switch (userSelection) {
                     // Case 1 is for registering a new patient
+                    // FIXME: make a method to check whether a patients information is identical to one that already exists
                     case 1:
                         patientRegistrationMenuOption(input, userSelection);
                         break;
 
                     // Case 2 is for viewing a patients information
                     case 2:
-                        // FIXME
+                        // FIXME: current implementation is for bugfixing
+                        seperator();
+                        for (Integer id: Hospital.mapAllPatients.keySet()) {
+                            int key = id;
+                            String value = Hospital.mapAllPatients.get(key).patientName;
+                            System.out.println(key + ": " + value);
+                        }
                         break;
 
                     // Case 3 "logs out" the user, a.k.a. shuts down the program
                     case 3:
                         break masterWhile;
+
+                    // Default runs when the user inputs an invalid option
+                    default:
+                        System.out.println("\n!!!!!Please enter a valid option!!!!!");
                 }
             }
         }
-        System.out.println("\nThank you for using the SGMC Patient Queueing System! :)");
+        seperator();
+        System.out.println("Thank you for using the SGMC Patient Queueing System! :)");
         // Closes the scanner to prevent data leaks
         input.close();
     }
