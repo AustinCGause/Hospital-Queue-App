@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    // FIXME: IS THIS WORKING??????
     public static void loginMessage() {
         System.out.println("\n~~~SGMC Hospital Patient Queue System v0.2~~~");
         System.out.println("          ~~Welcome back Austin~~");
