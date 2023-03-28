@@ -16,8 +16,9 @@ public class Main {
         seperator();
         System.out.println("What would you like to do?");
         System.out.println("1) Register a new patient");
-        System.out.println("2) View a current patients information");
-        System.out.print("3) Log out\n\n> ");
+        System.out.println("2) View & edit a current patients information");
+        System.out.println("3) View the active queue");
+        System.out.print("4) Log out\n\n> ");
     }
 
     public static void patientRegistrationMenuOption(Scanner input, int userSelection) {
@@ -64,7 +65,6 @@ public class Main {
         if (userSelection == 2) {
             newPatient.updatePatientInformation(input, newPatient);
         }
-
     }
 
     public static void main(String[] args) {
@@ -90,17 +90,31 @@ public class Main {
 
                     // Case 2 is for viewing a patients information
                     case 2:
-                        // FIXME: current implementation is for bugfixing
+                        Patient currentPatient = Patient.searchForPatient(input);
+
                         seperator();
-                        for (Integer id: Hospital.mapAllPatients.keySet()) {
-                            int key = id;
-                            String value = Hospital.mapAllPatients.get(key).patientName;
-                            System.out.println(key + ": " + value);
-                        }
+
+                        System.out.print("Would you like to update this information? (1 for y, 2 for n): ");
+                        userSelection = Integer.parseInt(input.nextLine());
+
+                        if (userSelection == 2) 
+                            continue;
+
+                        currentPatient.updatePatientInformation(input, currentPatient);
                         break;
 
-                    // Case 3 "logs out" the user, a.k.a. shuts down the program
+                    // FIXME: Make a method to show the active queue
                     case 3:
+                    seperator();
+                    for (Integer id: Hospital.mapAllPatients.keySet()) {
+                        int key = id;
+                        String value = Hospital.mapAllPatients.get(key).patientName;
+                        System.out.println(key + ": " + value);
+                    }
+                    break;
+
+                    // Case 3 "logs out" the user, a.k.a. shuts down the program
+                    case 4:
                         break masterWhile;
 
                     // Default runs when the user inputs an invalid option
@@ -110,7 +124,7 @@ public class Main {
             }
         }
         seperator();
-        System.out.println("Thank you for using the SGMC Patient Queueing System! :)");
+        System.out.println("Thank you for using the SGMC Patient Queueing System! :)\n");
         // Closes the scanner to prevent data leaks
         input.close();
     }

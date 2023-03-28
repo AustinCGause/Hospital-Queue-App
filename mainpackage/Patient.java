@@ -42,6 +42,16 @@ public class Patient {
         System.out.print("6) Away (Checked Out)\n\n> ");
     }
 
+    public static Patient searchForPatient(Scanner input) {
+        System.out.print("\nPlease enter patient's Id #: ");
+        int userInput = Integer.parseInt(input.nextLine());
+
+        Main.seperator();
+        Hospital.mapAllPatients.get(userInput).printPatientInformation();
+
+        return Hospital.mapAllPatients.get(userInput);
+    }
+
     public void printPatientInformation() {
         System.out.println("Patients name: " + this.patientName);
         System.out.println("Patients age: " + this.patientAge);
