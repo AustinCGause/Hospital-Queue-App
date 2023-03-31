@@ -12,7 +12,7 @@ public class Main {
         System.out.println("          ~~Welcome back Austin~~");
     }
 
-    public static void mainMenuSelectionMessages() {
+    public static int mainMenuSelection(Scanner input) {
         seperator();
         // FIXME: Turn these options into an array for scalability
         System.out.println("What would you like to do?");
