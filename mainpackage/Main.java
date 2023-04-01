@@ -12,8 +12,6 @@ public class Main {
         System.out.println("          ~~Welcome back Austin~~");
     }
 
-    // FIXME: Make a method that removes the need for a while loop to validate whether a users input is in the correct range
-
     public static int mainMenuSelection(Scanner input) {
         seperator();
         // FIXME: Turn these options into an array for scalability
@@ -35,6 +33,8 @@ public class Main {
 
         return userSelection;
     }
+
+    // FIXME: Make a method that removes the need for a while loop to validate whether a users input is in the correct range
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
