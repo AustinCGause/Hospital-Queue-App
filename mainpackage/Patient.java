@@ -7,6 +7,7 @@ public class Patient {
     int patientAge;
     int patientId;
     boolean hasInsurance;
+    Room patientRoom;
 
     public static enum PatientState {
         WAITING_ROOM,
@@ -18,7 +19,7 @@ public class Patient {
     }
     private PatientState patientStage;
 
-    public static List<Integer> listIdNumbers = new ArrayList<Integer>();
+    public static List<Integer> listIdNumbers = new ArrayList<>();
 
     public Patient(String patientName, int patientAge, int patientId, boolean hasInsurance, PatientState patientStage) {
         this.patientName = patientName;
@@ -29,8 +30,6 @@ public class Patient {
     }
 
     public static void patientRegistration(Scanner input) {
-
-        int userSelection;
 
         System.out.print("\nPatients Name (First Last): ");
         String newPatientName = input.nextLine();
@@ -49,11 +48,7 @@ public class Patient {
 
         System.out.println("\nAssign patient to waiting room?");
         if (Main.yesOrNoSelection(input) == 2){
-            do {
-                Patient.patientStageSelectionPrompt();
-                userSelection = Integer.parseInt(input.nextLine());
-                newPatient.setPatientStage(userSelection);
-            } while (userSelection < 1 || userSelection > 6);
+            newPatient.setPatientStage(input);
         }
 
         Main.seperator();
@@ -87,13 +82,21 @@ public class Patient {
         System.out.println("Patients current status: " + this.patientStage);
     }
 
-    public void setPatientStage(int userSelection) {
+    public void setPatientStage(Scanner input) {
+        Patient.patientStageSelectionPrompt();
+        int userSelection = Integer.parseInt(input.nextLine());
+
+        while (userSelection < 1 || userSelection > 6) {
+            userSelection = Integer.parseInt(input.nextLine());
+        }
+
         switch(userSelection) {
             case 1:
                 this.patientStage = PatientState.WAITING_ROOM;
                 break;
             case 2:
                 this.patientStage = PatientState.IN_ROOM;
+                setPatientRoom(input);
                 break;
             case 3:
                 this.patientStage = PatientState.SEEN_BY_NURSE;
@@ -110,6 +113,14 @@ public class Patient {
             default:
                 System.out.println("\n!!!!!Please enter a valid option!!!!!");
         }
+    }
+
+    public void setPatientRoom(Scanner input) {
+        System.out.print("/n What room do you want to assign the patient to?");
+
+        int userSelection = Integer.parseInt(input.nextLine());
+
+        System.out.println(userSelection);
     }
 
     public void updatePatientInformation(Scanner input, Patient newPatient) {
