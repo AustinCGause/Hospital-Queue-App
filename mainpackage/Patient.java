@@ -47,15 +47,15 @@ public class Patient {
             .build();
 
         System.out.println("\nAssign patient to waiting room?");
-        if (Main.yesOrNoSelection(input) == 2){
+        if (HelperClass.yesOrNoSelection(input) == 2){
             newPatient.setPatientStage(input);
         }
 
-        Main.seperator();
+        HelperClass.seperator();
 
         System.out.println("Is the below information accurate?\n");
         newPatient.printPatientInformation();
-        if (Main.yesOrNoSelection(input) == 2) {
+        if (HelperClass.yesOrNoSelection(input) == 2) {
             newPatient.updatePatientInformation(input, newPatient);
         }
     }
@@ -128,7 +128,7 @@ public class Patient {
 
         nestedWhile : {
             while (true) {
-                Main.seperator();
+                HelperClass.seperator();
 
                 System.out.println("What information would you like to change?");
                 System.out.println("1) Patient Name (current name: " + newPatient.patientName + ")");
@@ -161,16 +161,16 @@ public class Patient {
         System.out.print("\nPlease enter patient's Id #: ");
         int userInput = Integer.parseInt(input.nextLine());
 
-        Main.seperator();
+        HelperClass.seperator();
 
         Patient currentPatient = Hospital.mapAllPatients.get(userInput);
 
         currentPatient.printPatientInformation();
 
-        Main.seperator();
+        HelperClass.seperator();
 
         System.out.print("Would you like to update this information?");
-        if (Main.yesOrNoSelection(input) == 2) 
+        if (HelperClass.yesOrNoSelection(input) == 2) 
             return;
 
         currentPatient.updatePatientInformation(input, currentPatient);

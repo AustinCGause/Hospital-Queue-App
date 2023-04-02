@@ -3,17 +3,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void seperator() {
-        System.out.println("\n------------------------------\n");
-    }
-
     public static void initialLoginMessage() {
         System.out.println("\n~~~SGMC Hospital Patient Queue System v0.3~~~");
         System.out.println("          ~~Welcome back Austin~~");
     }
 
     public static int mainMenuSelection(Scanner input) {
-        seperator();
+        HelperClass.seperator();
         // FIXME: Turn these options into an array for scalability
         System.out.println("What would you like to do?");
         System.out.println("1) Register a new patient");
@@ -27,20 +23,13 @@ public class Main {
         return userSelection;
     }
 
-    public static int yesOrNoSelection(Scanner input) {
-        System.out.print("\n(1 for y, 2 for n): ");
-        int userSelection = Integer.parseInt(input.nextLine());
-
-        return userSelection;
-    }
-
-    // FIXME: Make a method that removes the need for a while loop to validate whether a users input is in the correct range
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Room.setRooms();
 
         initialLoginMessage();
+
+        HelperClass.enumerateRooms(Room.listRooms);
 
         masterWhile : {
             while (true) {
@@ -69,7 +58,7 @@ public class Main {
             }
         }
 
-        seperator();
+        HelperClass.seperator();
         System.out.println("Thank you for using the SGMC Patient Queueing System! :)\n");
         input.close();
     }
