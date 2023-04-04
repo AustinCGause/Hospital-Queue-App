@@ -37,11 +37,11 @@ public class Main {
 
                     // FIXME: make a method to check whether a patients information is identical to one that already exists
                     case 1:
-                        Patient.patientRegistration(input);
+                        PatientHelper.patientRegistration(input);
                         break;
 
                     case 2:
-                        Patient.searchForPatient(input);
+                        PatientHelper.searchForPatient(input);
                         break;
 
                     // FIXME: Make a method to show the active queue

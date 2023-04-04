@@ -2,7 +2,7 @@ package mainpackage;
 import java.util.*;
 
 public class HelperClass {
-    
+
     public static void seperator() {
         System.out.println("\n------------------------------\n");
     }
